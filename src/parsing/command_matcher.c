@@ -14,9 +14,6 @@ void	match_command(t_parse_state	*state, t_linked_list	**current)
 	char	*exe_line = strcut(state->line, state->start_index, state->current_index - 1);
 	command = create_node();
 	command->executable = exe_line;
-	(*current)->item = command;
-	(*current)->type = ITEM_COMMAND;
-	(*current)->next = create_linked_list();
-	(*current)->next->prev = (*current);
+	push_to_linked_list((*current), command, ITEM_COMMAND);
 	(*current) = (*current)->next;
 }
