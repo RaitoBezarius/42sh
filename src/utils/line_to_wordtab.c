@@ -8,14 +8,9 @@ char	**line_to_wordtab(const char	*line)
 	char	*pch;
 	char	**wordtab;
 	int index;
-	int line_length;
 	
-	line_length = strlen(line);
-	pch = (char	*)malloc(sizeof(char) * (line_length + 1));
-	strcpy(pch, line);
-	pch[line_length] = '\0';
 	index = 0;
-	pch = strtok(pch, " ");
+	pch = strtok(line, " ");
 	wordtab = (char	**)malloc(sizeof(char*) * 1);
 	wordtab[0] = pch;
 	

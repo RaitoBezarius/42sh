@@ -35,7 +35,10 @@ t_ast_list	*parse_line(char	*line)
 
 	list_ast = build_tree(nodes_list);
 	if (!list_ast)
+	{
+		free_linked_list(nodes_list);
 		return NULL;
+	}
 	
 	free_linked_list(nodes_list);
 	return list_ast;
@@ -68,12 +71,16 @@ t_linked_list	*form_initial_list(char	*line)
 	}
 	if (!current->item || !current->type)
 		remove_linked_item(current);
+
+	free(state);
 	return start;
 }
 
 t_ast_list	*build_tree(t_linked_list	*nodes_list)
 {
 	t_ast_list	*tree;
+
+	return NULL;
 }
 
 void	skipPast(t_parse_state	*state, char character)

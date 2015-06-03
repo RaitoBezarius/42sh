@@ -27,14 +27,12 @@ void	free_linked_list(t_linked_list	*list)
 	while (list)
 	{
 		next = list->next;
-		
+
 		list->freer(list->item);
-		free(list->prev);
+		free(list);
 
 		list = next;
 	}
-
-	free(list);
 }
 
 void	push_to_linked_list(t_linked_list	*current, void	*item, int	type, free_f_ptr	freer)
