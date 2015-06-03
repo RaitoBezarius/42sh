@@ -7,9 +7,10 @@ typedef struct s_parse_state
 	int line_length;
 	int current_index;
 	int start_index;
+	int bit_ok;
 } t_parse_state;
 
 /** Basic allocation function **/
-s_parse_state	*initialize_parse_state(char	*line);
+s_parse_state	*init_parse_state(char	*line);
 
 #endif
