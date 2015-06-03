@@ -5,7 +5,7 @@
 ## Login   <bebe-b_h@epitech.net>
 ## 
 ## Started on  Tue Apr 14 04:32:39 2015 Hendy-Wilson BEBE-BELL
-## Last update Wed Jun 03 14:10:02 2015 BEBE-BELL Hendy-Wilson
+## Last update Wed Jun 03 20:32:15 2015 BEBE-BELL Hendy-Wilson
 ##
 
 NAME	=	42sh
@@ -13,7 +13,7 @@ NAME	=	42sh
 CC	=	gcc
 RM	=	rm -f
 
-SRCS	=	src/test.c				\
+SRCS	=	src/main.c				\
 		src/utils/linked_list.c			\
 		src/utils/line_to_wordtab.c \
 		src/utils/wordtab_to_str.c \

@@ -5,13 +5,14 @@
 ** Login   <bebe-b_h@epitech.net>
 ** 
 ** Started on  Thu May  7 18:59:51 2015 BEBE-BELL Hendy-Wilson
-** Last update Thu May 14 14:11:19 2015 Alban Meurice
+** Last update Wed Jun 03 20:33:03 2015 BEBE-BELL Hendy-Wilson
 */
 
 #include <stdlib.h>
 #include <unistd.h>
 
-#include "utils/get_next_line.h"
+#include "utils.h"
+#include "get_next_line.h"
 
 static size_t	my_strclen(const char *str, const char c)
 {
