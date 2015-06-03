@@ -2,6 +2,10 @@
 #include "parsing/state.h"
 #include "parsing/error.h"
 
+#include "parsing/redirection_matchers.h"
+#include "parsing/token_matchers.h"
+#include "parsing/command_matcher.h"
+
 #include <string.h>
 
 t_ast	**parse_line(char	*line)
