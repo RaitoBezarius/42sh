@@ -87,7 +87,7 @@ int	reorganize_pipes(t_linked_list *nodes_list)
 	return TRUE;
 }
 
-int analyze_command_argv(linked_lsit	*nodes_list)
+int analyze_command_argv(linked_list	*nodes_list)
 {
 	t_command_node	*command;
 
