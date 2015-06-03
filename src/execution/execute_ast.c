@@ -1,4 +1,12 @@
 #include "execution/execute_ast.h"
+#include "execution/child.h"
+
+#include "parsing/parse.h"
+
+#include <unistd.h>
+#include <sys/wait.h>
+#include <stdio.h>
+#include <stdlib.h>
 
 int	execute_line(char	*line)
 {
@@ -20,7 +28,7 @@ int execute_list_ast(t_ast_list	*list_ast)
 	ret_code = SUCCESS;
 	while (index < list_ast->n_ast)
 	{
-		ret_code = execute_ast(list_ast->asts[index]);
+		ret_code = execute_ast(list_ast->list[index]);
 		index++;
 	}
 
@@ -48,6 +56,8 @@ int execute_ast(t_ast	*ast)
 		else
 			execute_ast(ast->on_command_succeed);
 	}
+
+	return SUCCESS;
 }
 
 int	execute_command(t_node_command	*cmd)
@@ -68,7 +78,7 @@ int	execute_command(t_node_command	*cmd)
 	}
 	else
 	{
-		status = child_execute(cmd);
-		exit(status);
+		child_execute(cmd);
+		return 0;
 	}
 }

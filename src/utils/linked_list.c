@@ -1,5 +1,6 @@
 #include "utils/linked_list.h"
 
+#include <stdio.h>
 #include <stdlib.h>
 
 t_linked_list	*create_linked_list()
@@ -22,7 +23,7 @@ t_linked_list	*create_linked_list()
 void	free_linked_list(t_linked_list	*list)
 {
 	free(list->item);
-	while (list = list->next)
+	while ((list = list->next))
 	{
 		free(list->item);
 		free(list->prev);

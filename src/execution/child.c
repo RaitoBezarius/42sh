@@ -2,6 +2,10 @@
 
 #include "definitions.h"
 
+#include <unistd.h>
+#include <stdio.h>
+#include <stdlib.h>
+
 void	child_execute(t_node_command	*cmd)
 {
 	int error;
@@ -10,14 +14,15 @@ void	child_execute(t_node_command	*cmd)
 		return ;
 	if (!install_redirection(cmd))
 		return ;
-	error = execve(cmd->executable, cmd->argv);
+	error = execve(cmd->executable, cmd->argv, 0);
 	if (error == -1)
 		fprintf(stderr, "Execve failed. Aborting execution.");
 }
 
 int	install_signals_handlers()
 {
-	
+	/** TODO: Code it **/
+	return 0;
 }
 
 int	install_redirection(t_node_command	*cmd)

@@ -29,4 +29,10 @@ enum RedirectionTypes
 	REDIR_STDOUT_APP = 5
 };
 
+enum RedirectionWay
+{
+	INPUT = 1,
+	OUTPUT = 2
+};
+
 #endif

@@ -5,7 +5,7 @@
 #include "utils/linked_list.h"
 
 /** parse_line returns a list of AST which can be safely executed. **/
-t_ast	**parse_line(char	*line);
+t_ast_list	*parse_line(char	*line);
 
 /** This is the initial pass, it forms a initial global AST by doing COMMAND [REDIRECTION] [REDIRECTION] [TOKEN COMMAND] ... **/
 /** It will pay attention to delimitors like ", ' and other... **/
@@ -18,6 +18,6 @@ t_linked_list	*form_initial_list(char	*line);
  *		- OR is the right part of a binary tree
  *		- Semicolon create a new AST
 **/
-t_ast	**build_tree(t_linked_list	*nodes_list);
+t_ast_list	*build_tree(t_linked_list	*nodes_list);
 
 #endif

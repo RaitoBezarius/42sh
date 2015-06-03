@@ -19,9 +19,9 @@ typedef struct	s_env
 }		t_env;
 
 void		load_env(char **envp); /** <== TODO: this function **/
-int		my_setenv(char *name, char *value);
-int		my_unsetenv(char *name);
-int		my_printenv(char *name);
+int		my_setenv(const char *name, const char *value);
+int		my_unsetenv(const char **name_list);
+int		my_printenv(const char *name);
 
 extern t_env	*g_env_list;
 

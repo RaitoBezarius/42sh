@@ -5,13 +5,14 @@
 #include "parsing/redirection_matchers.h"
 #include "parsing/token_matchers.h"
 #include "parsing/command_matcher.h"
+#include "parsing/parse_passes.h"
 
 #include <string.h>
 
-t_ast	**parse_line(char	*line)
+t_ast_list	*parse_line(char	*line)
 {
 	t_linked_list	*nodes_list;
-	t_ast	**list_ast;
+	t_ast_list	*list_ast;
 	int	index;
 
 	nodes_list = form_initial_list(line);
@@ -59,7 +60,7 @@ t_linked_list	*form_initial_list(char	*line)
 	return start;
 }
 
-t_ast	**build_tree(t_linked_list	*nodes_list)
+t_ast_list	*build_tree(t_linked_list	*nodes_list)
 {
-	t_ast	**tree;
+	t_ast_list	*tree;
 }

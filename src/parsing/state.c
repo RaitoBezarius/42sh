@@ -1,13 +1,14 @@
 #include "parsing/state.h"
 
 #include <stdlib.h>
+#include <stdio.h>
 #include <string.h>
 
-s_parse_state	*initialize_parse_state(char	*line)
+t_parse_state	*init_parse_state(char	*line)
 {
-	s_parse_state	*state;
+	t_parse_state	*state;
 
-	state = (s_parse_state *)malloc(sizeof(s_parse_state));
+	state = (t_parse_state *)malloc(sizeof(t_parse_state));
 	if (!state)
 	{
 		fprintf(stderr, "Allocation failed!");

@@ -3,6 +3,8 @@
 #include "parsing/matchers/simple_redirection.h"
 #include "parsing/matchers/pipe_redirection.h"
 
+#include <stdlib.h>
+
 static t_redirection_definition redir_defs[] = {
 	{ REDIR_STDOUT, "Redirection to stdout", match_redirect_stdout, dispatch_redirection_stdout },
 
@@ -11,7 +13,7 @@ static t_redirection_definition redir_defs[] = {
 	{ REDIR_PIPE, "Redirection by pipe", match_redirect_pipe, dispatch_pipe_redirection },
 };
 
-#define MAX_REDIR_DEFS (sizeof(redir_defs) / sizeof(redir_defs[0]))
+#define MAX_REDIR_DEFS (int)(sizeof(redir_defs) / sizeof(redir_defs[0]))
 
 
 int get_redir_type(t_parse_state	*state)

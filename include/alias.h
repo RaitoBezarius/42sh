@@ -15,12 +15,14 @@ typedef struct	s_alias
 {
   char		*name;
   char		*value;
-  char		*next;
+  struct s_alias		*next;
 }		t_alias;
 
 int		alias(const char *name, const char **value_list);
 int		unalias(const char **name_list);
 
-extern t_alias	g_alias_list;
+#define STREQ(a, b) strcmp(a, b) == 0
+
+extern t_alias	*g_alias_list;
 
 #endif /* !ALIAS_H_ */

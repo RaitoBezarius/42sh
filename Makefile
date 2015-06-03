@@ -14,10 +14,9 @@ CC	=	gcc
 RM	=	rm -f
 
 SRCS	=	src/test.c				\
-		src/utils/my_wordtab.c			\
-		src/utils/get_next_line.c		\
-		src/utils/wordtab_to_str.c		\
 		src/utils/linked_list.c			\
+		src/utils/line_to_wordtab.c \
+		src/alias/alias.c						\
 		src/alias/alias_utils.c			\
 		src/env/env_utils.c			\
 		src/env/env.c				\
@@ -26,15 +25,17 @@ SRCS	=	src/test.c				\
 		src/parsing/parse_passes.c		\
 		src/parsing/state.c			\
 		src/parsing/ast.c			\
-		src/parsing/parse.c
+		src/parsing/parse.c \
+		src/parsing/error.c \
+		src/parsing/redirection_matchers.c \
+		src/parsing/matchers/pipe_redirection.c \
+		src/parsing/matchers/simple_redirection.c \
+		src/parsing/command_matcher.c
 
 OBJS	=	$(SRCS:.c=.o)
 
 CFLAGS	+=	-Wall -Wextra -pedantic
-CFLAGS	+=	-Iinclude/		\
-		-Iinclude/execution/	\
-		-Iinclude/parsing/	\
-		-Iinclude/utils/
+CFLAGS	+=	-Iinclude/
 
 CFLAGS	+=	-g3
 

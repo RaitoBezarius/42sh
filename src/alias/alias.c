@@ -10,6 +10,7 @@
 
 #include <stdlib.h>
 #include <stdio.h>
+#include <string.h>
 
 #include "alias.h"
 #include "alias_utils.h"
@@ -33,7 +34,6 @@ static int	print_alias(const char *name)
       printf("\n");
     else
       printf("%s\n", tmp->value);
-    }
   }
   else
   {
@@ -54,7 +54,7 @@ static int	check_name(const char *name)
 {
   if (STREQ(name, "alias") || STREQ(name, "unalias"))
   {
-    fprintf(stderr, "%s: Too dangerous to alias that.\n");
+    fprintf(stderr, "%s: Too dangerous to alias that.\n", name);
     return (-1);
   }
   return (0);
@@ -69,7 +69,7 @@ int		alias(const char *name, const char **wordlist)
 {
   t_alias	*tmp;
 
-  if (name == NULL || worldist == NULL)
+  if (name == NULL || wordlist == NULL)
     return (print_alias(name));
   if (check_name(name) == -1)
     return (-1);
@@ -97,7 +97,7 @@ int		unalias(const char **name_list)
   t_alias	*tmp;
   t_alias	*to_del;
 
-  if (name == NULL || g_alias_list == NULL)
+  if (name_list == NULL || g_alias_list == NULL)
     return (0);
   tmp = g_alias_list;
   while (tmp != NULL && is_in_tab(tmp->name, name_list))

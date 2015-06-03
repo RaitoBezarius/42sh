@@ -1,6 +1,14 @@
 #ifndef AST_H_DEFINED
 #define AST_H_DEFINED
 
+typedef struct s_redirection
+{
+	int type;
+	int way;
+	char	*filename;
+	int	fd;
+} t_redirection;
+
 typedef struct s_node_command
 {
 	char	*executable;
@@ -10,14 +18,6 @@ typedef struct s_node_command
 	int flag_background;
 } t_node_command;
 
-typedef struct s_redirection
-{
-	int type;
-	char	*filename;
-	int	fd;
-} t_redirection;
-
-
 typedef struct s_ast
 {
 	struct s_ast	*on_command_succeed;
@@ -25,6 +25,12 @@ typedef struct s_ast
 	
 	t_node_command	*node;
 } t_ast;
+
+typedef struct s_ast_list
+{
+	t_ast	**list;
+	int n_ast;
+} t_ast_list;
 
 /** Basic allocation functions **/
 t_ast	*create_ast();

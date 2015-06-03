@@ -6,6 +6,7 @@
 #include "definitions.h"
 
 #include <stdio.h>
+#include <stdlib.h>
 
 t_ast	*create_ast()
 {
@@ -17,8 +18,8 @@ t_ast	*create_ast()
 		fprintf(stderr, "Allocation failed!");
 		return NULL;
 	}
-	ast->left = NULL;
-	ast->right = NULL;
+	ast->on_command_succeed = NULL;
+	ast->on_command_failed = NULL;
 	ast->node = create_node();
 	if (!ast->node)
 	{
@@ -32,7 +33,7 @@ t_node_command	*create_node()
 {
 	t_node_command	*node;
 
-	node = malloc(sizeof(t_node));
+	node = malloc(sizeof(t_node_command));
 	node->executable = NULL;
 	node->argv = NULL;
 	node->out = NULL;

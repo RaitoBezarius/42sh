@@ -11,6 +11,6 @@ typedef struct s_parse_state
 } t_parse_state;
 
 /** Basic allocation function **/
-s_parse_state	*init_parse_state(char	*line);
+t_parse_state	*init_parse_state(char	*line);
 
 #endif

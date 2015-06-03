@@ -1,4 +1,6 @@
 #include "parsing/matchers/pipe_redirection.h"
+#include "parsing/redirection_matchers.h"
+#include "parsing/ast.h"
 
 #include "definitions.h"
 

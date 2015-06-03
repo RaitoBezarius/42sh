@@ -1,6 +1,14 @@
 #include "parsing/parse_passes.h"
+#include "parsing/ast.h"
+#include "parsing/redirection_matchers.h"
+
+#include "utils/line_to_wordtab.h"
 
 #include "definitions.h"
+
+#include <stdio.h>
+#include <unistd.h>
+#include <string.h>
 
 pass_function passes[] = {
 	relocate,
@@ -68,16 +76,12 @@ int inject_redirection_into_nodes(t_linked_list *nodes_list)
 
 int	reorganize_pipes(t_linked_list *nodes_list)
 {
-	stack	*pipes;
 	int	*pipefd;
 	
-	pipes = create_stack();
-	if (!pipes)
-		return FALSE;
 	if (pipe(pipefd) == -1)
 		return FALSE;
 
-	while (nodes_list = nodes_list->next)
+	while ((nodes_list = nodes_list->next))
 	{
 		if (nodes_list->type == ITEM_REDIRECTION)
 		{
@@ -87,17 +91,17 @@ int	reorganize_pipes(t_linked_list *nodes_list)
 	return TRUE;
 }
 
-int analyze_command_argv(linked_list	*nodes_list)
+int analyze_command_argv(t_linked_list	*nodes_list)
 {
-	t_command_node	*command;
+	t_node_command	*command;
 
 	command = NULL;
-	while (nodes_list = nodes_list->next)
+	while ((nodes_list = nodes_list->next))
 	{
 		if (nodes_list->type == ITEM_COMMAND)
 		{
-			command = (t_command_node	*)nodes_list->item;
-			command->argv = strtok(command->executable, " ");
+			command = (t_node_command	*)nodes_list->item;
+			command->argv = line_to_wordtab(command->executable);
 			command->executable = command->argv[0];
 			command->argv = &command->argv[1];
 			/** TODO: Is there a memory leak somewhere that I can't see ? **/

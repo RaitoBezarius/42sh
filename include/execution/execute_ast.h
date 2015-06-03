@@ -1,7 +1,7 @@
 #ifndef EXECUTE_AST_H_DEFINED
 #define EXECUTE_AST_H_DEFINED
 
-#include "parsing/parse.h"
+#include "parsing/ast.h"
 
 #define SUCCESS 0
 #define PARSING_ERROR 255

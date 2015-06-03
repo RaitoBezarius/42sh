@@ -2,6 +2,9 @@
 
 #include "definitions.h"
 
+#include <stdio.h>
+#include <stdlib.h>
+
 void	set_error(t_parse_state	*state, const char	*format, ...)
 {
 	char buffer[MAX_ERROR_BUFFER];
@@ -15,6 +18,5 @@ void	set_error(t_parse_state	*state, const char	*format, ...)
 
 void	panic(t_parse_state	*state)
 {
-	free(state->line);
 	free(state);
 }

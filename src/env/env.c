@@ -73,7 +73,7 @@ int	my_unsetenv(const char **name_list)
   t_env	*tmp;
   t_env	*to_del;
 
-  if (name == NULL || g_env_list == NULL)
+  if (name_list == NULL || g_env_list == NULL)
     return (0);
   tmp = g_env_list;
   while (tmp != NULL && is_in_tab(tmp->name, name_list))
