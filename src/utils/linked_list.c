@@ -29,6 +29,14 @@ void	free_linked_list(t_linked_list	*list)
 	}
 }
 
+void	push_to_linked_list(t_linked_list	*current, void	*item, int	type)
+{
+	current->next = create_linked_list();
+	current->next->item = item;
+	current->next->type = type;
+	current->next->prev = current;
+}
+
 void	remove_linked_item(t_linked_list	*item)
 {
 	free(item->item);

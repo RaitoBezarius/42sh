@@ -1,16 +1,6 @@
 #ifndef AST_H_DEFINED
 #define AST_H_DEFINED
 
-#define TRUE 1
-#define FALSE 0
-
-typedef struct s_grammar_definition
-{
-	int type;
-	char const	*name;
-	int	(*matcher)(char	*current);
-} t_grammar_definition;
-
 typedef struct s_node_command
 {
 	char	*executable;
@@ -38,8 +28,15 @@ typedef struct s_ast
 
 /** Basic allocation functions **/
 t_ast	*create_ast();
-t_node	*create_node();
+t_node_command	*create_node();
+t_redirection	*create_redirection();
 
-extern t_grammar_definition grammar_definitions[];
+
+enum ListItem
+{
+	ITEM_COMMAND = 1,
+	ITEM_REDIRECTION = 2,
+	ITEM_TOKEN = 3
+};
 
 #endif

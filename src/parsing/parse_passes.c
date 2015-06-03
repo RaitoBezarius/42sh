@@ -1,5 +1,7 @@
 #include "parsing/parse_passes.h"
 
+#include "definitions.h"
+
 pass_function passes[] = {
 	relocate,
 	inject_redirection_into_nodes,
@@ -85,7 +87,7 @@ int	reorganize_pipes(t_linked_list *nodes_list)
 	return TRUE;
 }
 
-int analyze_command_argv(linked_lsit	*nodes_list)
+int analyze_command_argv(linked_list	*nodes_list)
 {
 	t_command_node	*command;
 

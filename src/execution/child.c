@@ -1,5 +1,7 @@
 #include "execution/child.h"
 
+#include "definitions.h"
+
 void	child_execute(t_node_command	*cmd)
 {
 	int error;
