@@ -21,6 +21,6 @@ int	reorganize_pipes(t_linked_list	*nodes_list);
 int	analyze_command_argv(t_linked_list	*nodes_list);
 
 typedef int (*pass_function)(t_linked_list	*);
-extern pass_function passes[4];
-#define N_PASSES 4
+extern pass_function passes[3];
+#define N_PASSES 3
 #endif

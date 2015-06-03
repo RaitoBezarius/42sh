@@ -15,6 +15,19 @@ static t_redirection_definition redir_defs[] = {
 
 #define MAX_REDIR_DEFS (int)(sizeof(redir_defs) / sizeof(redir_defs[0]))
 
+void	redirection_freer(void	*item)
+{
+	t_redirection	*redir;
+
+	redir = (t_redirection	*)item;
+	if (redir->filename)
+	{
+		free(redir->filename);
+		redir->filename = NULL;
+	}
+
+	free(redir);
+}
 
 int get_redir_type(t_parse_state	*state)
 {
@@ -50,6 +63,7 @@ redir_dispatcher_function	get_redirection_matcher(int type)
 	{
 		if (redir_defs[index].type == type)
 			return redir_defs[index].dispatch;
+		index++;
 	}
 
 	return NULL;

@@ -12,7 +12,7 @@
 
 pass_function passes[] = {
 	relocate,
-	inject_redirection_into_nodes,
+	/** TODO: It's quite tricky to make it work: inject_redirection_into_nodes, **/
 	reorganize_pipes,
 	analyze_command_argv
 };
@@ -76,7 +76,7 @@ int inject_redirection_into_nodes(t_linked_list *nodes_list)
 
 int	reorganize_pipes(t_linked_list *nodes_list)
 {
-	int	*pipefd;
+	int	pipefd[2];
 	
 	if (pipe(pipefd) == -1)
 		return FALSE;
@@ -96,16 +96,16 @@ int analyze_command_argv(t_linked_list	*nodes_list)
 	t_node_command	*command;
 
 	command = NULL;
-	while ((nodes_list = nodes_list->next))
+	while (nodes_list)
 	{
 		if (nodes_list->type == ITEM_COMMAND)
 		{
 			command = (t_node_command	*)nodes_list->item;
 			command->argv = line_to_wordtab(command->executable);
-			command->executable = command->argv[0];
-			command->argv = &command->argv[1];
 			/** TODO: Is there a memory leak somewhere that I can't see ? **/
 		}
+
+		nodes_list = nodes_list->next;
 	}
 	return TRUE;
 }

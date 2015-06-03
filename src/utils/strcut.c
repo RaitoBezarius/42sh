@@ -35,6 +35,9 @@ t_strip_location count_stripped(const char	*str, const int s_idx, const int e_id
 	return location;
 }
 
+/** TODO CRITICAL: strcut(line, 0, 1) will always return NULL
+**/
+
 char	*strcut(const char *str, const int s_idx, const int e_idx)
 {
   char	*tmp;

@@ -27,5 +27,10 @@ char	**line_to_wordtab(const char	*line)
 		wordtab[index] = pch;
 	}
 
+	index++;
+
+	wordtab = realloc(wordtab, sizeof(char*) * (index + 1));
+	wordtab[index] = NULL;
+
 	return wordtab;
 }

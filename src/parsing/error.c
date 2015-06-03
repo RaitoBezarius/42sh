@@ -13,6 +13,7 @@ void	set_error(t_parse_state	*state, const char	*format, ...)
 	state->bit_ok = FALSE;
 	va_start(args, format);
 	vsprintf(buffer, format, args);
+	fprintf(stderr, buffer);
 	va_end(args);
 }
 

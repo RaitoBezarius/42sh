@@ -2,6 +2,7 @@
 #define PARSE_H_DEFINED
 
 #include "parsing/ast.h"
+#include "parsing/state.h"
 #include "utils/linked_list.h"
 
 /** parse_line returns a list of AST which can be safely executed. **/
@@ -19,5 +20,11 @@ t_linked_list	*form_initial_list(char	*line);
  *		- Semicolon create a new AST
 **/
 t_ast_list	*build_tree(t_linked_list	*nodes_list);
+
+void	skipPast(t_parse_state	*state, char character);
+void	skipToNext(t_parse_state	*state, char character);
+
+void	print_debug_list(t_linked_list	*nodes_list);
+void	print_debug_node(t_linked_list	*node);
 
 #endif
