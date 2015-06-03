@@ -21,11 +21,11 @@ int	match_token_or(t_parse_state	*state)
 void	dispatch_token_and(t_parse_state	*state, t_linked_list	**current)
 {
 	state->current_index += 2;
-	push_to_linked_list((*current), create_token(TK_AND), ITEM_TOKEN);
+	push_to_linked_list((*current), create_token(TK_AND), ITEM_TOKEN, token_freer);
 }
 
 void	dispatch_token_or(t_parse_state	*state, t_linked_list	**current)
 {
 	state->current_index += 2;
-	push_to_linked_list((*current), create_token(TK_OR), ITEM_TOKEN);
+	push_to_linked_list((*current), create_token(TK_OR), ITEM_TOKEN, token_freer);
 }

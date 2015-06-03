@@ -15,6 +15,7 @@ typedef struct s_token_definition
 	token_dispatcher_function dispatch;
 } t_token_definition;
 
+void	token_freer(void	*item);
 int	get_token_type(t_parse_state	*state);
 int is_token(t_parse_state	*state);
 token_dispatcher_function	get_token_dispatcher(int type);
@@ -27,5 +28,7 @@ enum TokenTypes
 	TK_SMCLN = 3,
 	TK_ESPERLUETTE = 4
 };
+
+extern t_token_definition token_defs[];
 
 #endif

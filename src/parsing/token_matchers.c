@@ -5,7 +5,7 @@
 
 #include <stdlib.h>
 
-static t_token_definition token_defs[] = {
+t_token_definition token_defs[] = {
 	{ TK_AND, "And (&&)", match_token_and, dispatch_token_and },
 	{ TK_OR, "Or (||)", match_token_or, dispatch_token_or },
 	{ TK_SMCLN, "Semicolon (;)", match_token_smcln, dispatch_token_smcln },
@@ -13,6 +13,14 @@ static t_token_definition token_defs[] = {
 };
 
 #define MAX_TOKEN_DEFS (int)(sizeof(token_defs) / sizeof(token_defs[0]))
+
+void	token_freer(void	*item)
+{
+	int	*tk_type;
+
+	tk_type = (int	*)item;
+	free(tk_type);
+}
 
 int get_token_type(t_parse_state	*state)
 {
@@ -47,6 +55,7 @@ token_dispatcher_function get_token_dispatcher(int type)
 	{
 		if (token_defs[index].type == type)
 			return token_defs[index].dispatch;
+		index++;
 	}
 
 	return NULL;
@@ -56,4 +65,5 @@ void	match_token(t_parse_state	*state, t_linked_list	**current)
 {
 	int s_type = get_token_type(state);
 	get_token_dispatcher(s_type)(state, current);
+	(*current) = (*current)->next;
 }

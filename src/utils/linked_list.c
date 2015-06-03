@@ -22,29 +22,44 @@ t_linked_list	*create_linked_list()
 
 void	free_linked_list(t_linked_list	*list)
 {
-	free(list->item);
-	while ((list = list->next))
+	t_linked_list	*next;
+
+	while (list)
 	{
-		free(list->item);
+		next = list->next;
+		
+		list->freer(list->item);
 		free(list->prev);
+
+		list = next;
 	}
+
+	free(list);
 }
 
-void	push_to_linked_list(t_linked_list	*current, void	*item, int	type)
+void	push_to_linked_list(t_linked_list	*current, void	*item, int	type, free_f_ptr	freer)
 {
+	current->item = item;
+	current->type = type;
+	current->freer = freer;
 	current->next = create_linked_list();
-	current->next->item = item;
-	current->next->type = type;
 	current->next->prev = current;
 }
 
 void	remove_linked_item(t_linked_list	*item)
 {
 	free(item->item);
-	if (item->next)
+
+	if (item->next && item->prev)
+	{
 		item->prev->next = item->next;
-	if (item->prev)
 		item->next->prev = item->prev;
+	}
+	else if (item->next)
+		item->next->prev = NULL;
+	else if (item->prev)
+		item->prev->next = NULL;
+
 	free(item);
 }
 
