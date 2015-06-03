@@ -3,6 +3,8 @@
 #include "parsing/token_matchers.h"
 #include "parsing/redirection_matchers.h"
 
+#include "definitions.h"
+
 #include <stdio.h>
 
 t_grammar_definition grammar_definitions[] = {

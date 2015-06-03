@@ -1,5 +1,7 @@
 #include "parsing/parse_passes.h"
 
+#include "definitions.h"
+
 pass_function passes[] = {
 	relocate,
 	inject_redirection_into_nodes,
