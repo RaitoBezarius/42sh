@@ -20,5 +20,13 @@ int is_redirection(t_parse_state	*state);
 redir_dispatcher_function	get_dispatcher(int type);
 void	match_redirection(t_parse_state	*state, t_linked_list	**current);
 
+enum RedirectionTypes
+{
+	REDIR_STDOUT = 1,
+	REDIR_STDIN = 2,
+	REDIR_PIPE = 3,
+	REDIR_STDIN_EOL = 4,
+	REDIR_STDOUT_APP = 5
+};
 
 #endif
