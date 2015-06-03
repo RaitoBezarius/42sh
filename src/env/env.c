@@ -12,6 +12,7 @@
 #include <stdio.h>
 #include <string.h>
 
+#include "utils/wordtab_to_str.h"
 #include "env.h"
 #include "env_utils.h"
 
@@ -86,7 +87,7 @@ int	my_unsetenv(const char **name_list)
   {
     while (tmp->next != NULL)
     {
-      if (is_in_tab(tmp->next, name_list))
+      if (is_in_tab(tmp->next->name, name_list))
       {
 	to_del = tmp->next;
 	tmp->next = tmp->next->next;
