@@ -40,7 +40,7 @@ int is_redirection(t_parse_state	*state)
 	return get_redir_type(state) != 0;
 }
 
-redir_dispatcher_function	get_dispatcher(int type)
+redir_dispatcher_function	get_redirection_matcher(int type)
 {
 	int index;
 	
@@ -58,5 +58,5 @@ redir_dispatcher_function	get_dispatcher(int type)
 void	match_redirection(t_parse_state	*state, t_linked_list	**current)
 {
 	int r_type = get_redir_type(state);
-	get_dispatcher(r_type)(state, current);
+	get_redirection_matcher(r_type)(state, current);
 }

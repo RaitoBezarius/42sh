@@ -5,7 +5,7 @@
 #include "utils/linked_list.h"
 
 typedef int (*redir_matcher_function)(t_parse_state	*);
-typedef int (*redir_dispatcher_function)(t_parse_state	*, t_linked_list	**);
+typedef void (*redir_dispatcher_function)(t_parse_state	*, t_linked_list	**);
 
 typedef struct s_redirection_definition
 {
@@ -17,7 +17,7 @@ typedef struct s_redirection_definition
 
 int get_redir_type(t_parse_state	*state);
 int is_redirection(t_parse_state	*state);
-redir_dispatcher_function	get_dispatcher(int type);
+redir_dispatcher_function	get_redirection_dispatcher(int type);
 void	match_redirection(t_parse_state	*state, t_linked_list	**current);
 
 enum RedirectionTypes
