@@ -7,29 +7,6 @@
 
 #include <stdio.h>
 
-t_grammar_definition grammar_definitions[] = {
-
-	{ TK_AND, "And", match_token_and },
-
-	{ TK_OR, "Or", match_token_or },
-
-	{ TK_SMCLN, "Semicolon", match_token_semicolon },
-
-	{ REDIR_STDIN, "Redirect stdin (<)", match_redir_stdin },
-
-	{ REDIR_STDOUT_TRUNC, "Redirect stdout (>) by truncating the file", 
-		match_redir_stdout },
-
-	{ REDIR_STDIN_EOL, "Redirect stdin with a custom EOL (<<)", 
-		match_redir_stdin_eol },
-
-	{ REDIR_STDOUT_APP, "Redirect stdout (>>) by appending to file", 
-		match_redir_stdout_app },
-
-	{ REDIR_PIPE, "Redirect by piping left stdout to right stdin (|)", 
-		match_redir_pipe }
-};
-
 t_ast	*create_ast()
 {
 	t_ast	*ast;

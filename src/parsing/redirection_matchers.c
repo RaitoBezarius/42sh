@@ -1,5 +1,8 @@
 #include "parsing/redirection_matchers.h"
 
+#include "parsing/matchers/simple_redirection.h"
+#include "parsing/matchers/pipe_redirection.h"
+
 static t_redirection_definition redir_defs[] = {
 	{ REDIR_STDOUT, "Redirection to stdout", match_redirect_stdout, dispatch_redirection_stdout },
 
