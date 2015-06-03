@@ -8,7 +8,7 @@
 ## Last update Wed Jun 03 14:10:02 2015 BEBE-BELL Hendy-Wilson
 ##
 
-NAME	=	mysh
+NAME	=	42sh
 
 CC	=	gcc
 RM	=	rm -f

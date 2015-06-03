@@ -17,7 +17,7 @@
 ** Fonction sur laquelle repose tout le programme
 ** DO NOT DELETE ! NE PAS SUPPRIMER ! LA MEME DANS UNE AUTRE LANGUE !
 */
-int isblank(char c)
+int is_blank(char c)
 {
 	return c == ' ';
 }
@@ -27,10 +27,10 @@ t_strip_location count_stripped(const char	*str, const int s_idx, const int e_id
 	t_strip_location location;
 
 	location.start_index = s_idx;
-	while (location.start_index < e_idx && isblank(str[location.start_index]))
+	while (location.start_index < e_idx && is_blank(str[location.start_index]))
 		++location.start_index;
 	location.end_index = e_idx;
-	while (location.end_index > s_idx && isblank(str[location.end_index]))
+	while (location.end_index > s_idx && is_blank(str[location.end_index]))
 		--location.end_index;
 	return location;
 }
