@@ -1,5 +1,6 @@
 #include "parsing/parse.h"
 #include "parsing/state.h"
+#include "parsing/error.h"
 
 #include <string.h>
 
@@ -28,23 +29,30 @@ t_ast	**parse_line(char	*line)
 
 t_linked_list	*form_initial_list(char	*line)
 {
-	s_parse_state	*state;
-	t_linked_list	*nodes;
+	t_parse_state	*state;
+	t_linked_list	*start;
+	t_linked_list	*current;
 	
-	state = initialize_parse_state(line);
-	nodes = create_linked_list();
-	if (!state || !nodes)
+	state = init_parse_state(line);
+	start = create_linked_list();
+	if (!state || !start)
 		return NULL;
+	current = start;
 	while (state->current_index < state->line_length)
 	{
-		if (is_redirection(&state))
-			match_redirection(&state, &nodes);
-		else if (is_token(&state))
-			match_token(&state, &nodes);
+		if (is_redirection(state))
+			match_redirection(state, &current);
+		else if (is_token(state))
+			match_token(state, &current);
 		else
-			match_command(&state, &nodes);
+			match_command(state, &current);
+		if (!state->bit_ok)
+		{
+			panic(state);
+			return NULL;
+		}
 	}
-	return nodes;
+	return start;
 }
 
 t_ast	**build_tree(t_linked_list	*nodes_list)
