@@ -17,6 +17,7 @@ SRCS	=	src/test.c				\
 		src/utils/linked_list.c			\
 		src/utils/line_to_wordtab.c \
 		src/utils/wordtab_to_str.c \
+		src/utils/get_next_line.c \
 		src/utils/strcut.c			\
 		src/alias/alias.c						\
 		src/alias/alias_utils.c			\

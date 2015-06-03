@@ -11,8 +11,7 @@
 #include <stdlib.h>
 #include <unistd.h>
 
-#include "get_next_line.h"
-#include "utils.h"
+#include "utils/get_next_line.h"
 
 static size_t	my_strclen(const char *str, const char c)
 {
