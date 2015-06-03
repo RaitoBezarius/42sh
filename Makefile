@@ -8,7 +8,7 @@
 ## Last update Wed Jun 03 14:10:02 2015 BEBE-BELL Hendy-Wilson
 ##
 
-NAME	=	mysh
+NAME	=	42sh
 
 CC	=	gcc
 RM	=	rm -f
@@ -17,6 +17,7 @@ SRCS	=	src/test.c				\
 		src/utils/linked_list.c			\
 		src/utils/line_to_wordtab.c \
 		src/utils/wordtab_to_str.c \
+		src/utils/get_next_line.c \
 		src/utils/strcut.c			\
 		src/alias/alias.c						\
 		src/alias/alias_utils.c			\
@@ -32,6 +33,8 @@ SRCS	=	src/test.c				\
 		src/parsing/redirection_matchers.c \
 		src/parsing/matchers/pipe_redirection.c \
 		src/parsing/matchers/simple_redirection.c \
+		src/parsing/matchers/execution_chains.c \
+		src/parsing/matchers/execution_parallel.c \
 		src/parsing/token_matchers.c \
 		src/parsing/command_matcher.c
 

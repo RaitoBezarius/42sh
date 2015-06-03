@@ -36,6 +36,7 @@ typedef struct s_ast_list
 t_ast	*create_ast();
 t_node_command	*create_node();
 t_redirection	*create_redirection();
+int	*create_token(int tk_type);
 
 
 enum ListItem

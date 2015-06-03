@@ -62,3 +62,18 @@ t_redirection	*create_redirection()
 	redirection->fd = 0;
 	return redirection;
 }
+
+int	*create_token(int tk_type)
+{
+	int* tk;
+
+	tk = malloc(sizeof(int));
+	if (!tk)
+	{
+		fprintf(stderr, "Allocation failed!");
+		return NULL;
+	}
+
+	*tk = tk_type;
+	return tk;
+}

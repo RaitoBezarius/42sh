@@ -11,7 +11,9 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
+#include <ctype.h>
 
+#include "utils/string_utils.h"
 #include "utils/wordtab_to_str.h"
 #include "env.h"
 #include "env_utils.h"
@@ -28,7 +30,7 @@ static int	check_name(const char *name)
     fprintf(stderr, "setenv: Variable name must begin with a letter.\n");
     return (-1);
   }
-  if (!is_alphanum(name))
+  if (!isalnum(name))
   {
     fprintf(stderr, "setenv: Variable name must be only alphanumeric.\n");
     return (-1);
