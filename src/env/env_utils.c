@@ -12,6 +12,8 @@
 #include <stdio.h>
 #include <string.h>
 
+#include "utils/string_utils.h"
+
 #include "env.h"
 #include "env_utils.h"
 

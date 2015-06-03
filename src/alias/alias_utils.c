@@ -12,6 +12,7 @@
 #include <stdio.h>
 #include <string.h>
 
+#include "utils/string_utils.h"
 #include "alias.h"
 #include "alias_utils.h"
 

@@ -16,6 +16,8 @@ RM	=	rm -f
 SRCS	=	src/test.c				\
 		src/utils/linked_list.c			\
 		src/utils/line_to_wordtab.c \
+		src/utils/wordtab_to_str.c \
+		src/utils/strcut.c			\
 		src/alias/alias.c						\
 		src/alias/alias_utils.c			\
 		src/env/env_utils.c			\

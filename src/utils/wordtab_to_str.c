@@ -9,10 +9,12 @@
 */
 
 #include <stdlib.h>
+#include <string.h>
+#include <stdio.h>
 
-#include "utils.h"
+#include "definitions.h"
 
-static int	get_string_len(char **wordtab)
+static int	get_string_len(const char **wordtab)
 {
   int		string_len;
   int		word_count;
@@ -21,13 +23,30 @@ static int	get_string_len(char **wordtab)
   word_count = 0;
   while (wordtab[word_count] != NULL)
   {
-    string_len += my_strlen(wordtab[word_count]);
+    string_len += strlen(wordtab[word_count]);
     ++word_count;
   }
   return (string_len + word_count);
 }
 
-char	*wordtab_to_str(char **wordtab)
+int is_in_tab(const char	*element, const char	**wordtab)
+{
+	int index;
+	
+	if (!wordtab || !element)
+		return FALSE;
+
+	index = 0;
+	while (wordtab[index] != NULL)
+	{
+		if (strcmp(element, wordtab[index]) == 0)
+			return TRUE;
+	}
+
+	return FALSE;
+}
+
+char	*wordtab_to_str(const char **wordtab)
 {
   char	*string;
   int	word_n;

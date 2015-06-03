@@ -21,8 +21,6 @@ typedef struct	s_alias
 int		alias(const char *name, const char **value_list);
 int		unalias(const char **name_list);
 
-#define STREQ(a, b) strcmp(a, b) == 0
-
 extern t_alias	*g_alias_list;
 
 #endif /* !ALIAS_H_ */
