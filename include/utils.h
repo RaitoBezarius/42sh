@@ -5,7 +5,7 @@
 ** Login   <bebe-b_h@epitech.net>
 ** 
 ** Started on  Mon May 11 19:14:38 2015 BEBE-BELL Hendy-Wilson
-** Last update Wed Jun 03 17:04:52 2015 BEBE-BELL Hendy-Wilson
+** Last update Wed Jun 03 20:30:46 2015 BEBE-BELL Hendy-Wilson
 */
 
 #ifndef UTILS_H_
@@ -14,7 +14,7 @@
 /*
 ** System Errors
 */
-# define ERR_ALLOC	"couldn't allocate memory"
+# define ERR_ALLOC	"could not allocate memory"
 
 /*
 ** Program Errors
