@@ -14,14 +14,14 @@
 int	match_redirect_stdout(t_parse_state	*state)
 {
 	if (state->line[state->current_index] == '>' && state->line[state->current_index + 1] != '>')
-		return TRUE;
+		return REDIR_STDOUT;
 	return FALSE;
 }
 
 int match_redirect_stdin(t_parse_state	*state)
 {
 	if (state->line[state->current_index] == '<' && state->line[state->current_index + 1] != '<')
-		return TRUE;
+		return REDIR_STDIN;
 	return FALSE;
 }
 

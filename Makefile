@@ -32,6 +32,8 @@ SRCS	=	src/test.c				\
 		src/parsing/redirection_matchers.c \
 		src/parsing/matchers/pipe_redirection.c \
 		src/parsing/matchers/simple_redirection.c \
+		src/parsing/matchers/execution_chains.c \
+		src/parsing/matchers/execution_parallel.c \
 		src/parsing/token_matchers.c \
 		src/parsing/command_matcher.c
 

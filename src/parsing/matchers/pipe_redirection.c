@@ -7,7 +7,7 @@
 int	match_redirect_pipe(t_parse_state	*state)
 {
 	if (state->line[state->current_index] == '|' && state->line[state->current_index + 1] != '|')
-		return TRUE;
+		return REDIR_PIPE;
 	return FALSE;
 }
 
