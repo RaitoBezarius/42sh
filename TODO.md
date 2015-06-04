@@ -29,7 +29,7 @@ What we need to finish !
 	- [ ] Magic quotes
 	- [ ] Priority by parenthesis ()
 - [ ] Execution
-	- [ ] Is It A {Alias, Builtin}
+	- [x] Is It A {Alias, Builtin}
 	- [ ] Environnement
 	- [ ] Prompt
 	- [x] Get next line
@@ -43,7 +43,7 @@ What we need to finish !
 	- [ ] cd
 		- [ ] cd alone
 		- [ ] cd -
-	- [ ] echo
+	- [x] echo
 	- [ ] exit
 - [ ] Globbing
 - [ ] Variables
