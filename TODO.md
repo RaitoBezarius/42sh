@@ -44,7 +44,7 @@ What we need to finish !
 		- [ ] cd alone
 		- [ ] cd -
 	- [x] echo
-	- [ ] exit
+	- [x] exit
 - [ ] Globbing
 - [ ] Variables
 	- [ ] Local
