@@ -53,8 +53,14 @@ int relocate(t_linked_list **nodes_list)
 				}
 			}
 		}
-
-		(*nodes_list) = (*nodes_list)->next;
+		else if ((*nodes_list)->type == ITEM_REDIRECTION)
+		{
+			while ((*nodes_list) && (*nodes_list)->type == ITEM_REDIRECTION)
+				(*nodes_list) = (*nodes_list)->next;
+		}
+		
+		if ((*nodes_list))
+			(*nodes_list) = (*nodes_list)->next;
 	}
 	(*nodes_list) = start;
 	return TRUE;
