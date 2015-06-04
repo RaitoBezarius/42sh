@@ -41,6 +41,7 @@ void	dispatch_redirection_stdout(t_parse_state	*state, t_linked_list	**current)
 		return;
 	push_to_linked_list((*current), redirection, ITEM_REDIRECTION, redirection_freer);
 	(*current) = (*current)->next;
+	state->current_index++;
 }
 
 void	dispatch_redirection_stdin(t_parse_state	*state, t_linked_list	**current)
@@ -63,6 +64,7 @@ void	dispatch_redirection_stdin(t_parse_state	*state, t_linked_list	**current)
 		return;
 	push_to_linked_list((*current), redirection, ITEM_REDIRECTION, redirection_freer);
 	(*current) = (*current)->next;
+	state->current_index++;
 }
 
 int	open_fd(t_parse_state	*state, t_redirection	*redirection, int flag)

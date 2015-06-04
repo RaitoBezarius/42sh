@@ -26,7 +26,7 @@ t_ast_list	*parse_line(char	*line)
 
 	while (index < N_PASSES)
 	{
-		if (!passes[index](nodes_list))
+		if (!passes[index](&nodes_list))
 			return NULL;
 		index++;
 	}
@@ -68,6 +68,7 @@ t_linked_list	*form_initial_list(char	*line)
 			panic(state);
 			return NULL;
 		}
+		skipPast(state, ' ');
 	}
 	if (!current->item || !current->type)
 		remove_linked_item(current);

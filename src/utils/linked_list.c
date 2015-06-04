@@ -73,6 +73,9 @@ void	move_item_before(t_linked_list	*from, t_linked_list	*to)
 		from->prev = to->prev;
 		from->prev->next = from;
 	}
-
+	else
+		from->prev = NULL;
+	
+	from->next = to;
 	to->prev = from;
 }
