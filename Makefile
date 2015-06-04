@@ -19,6 +19,7 @@ SRCS	=	src/main.c				\
 		src/utils/wordtab_to_str.c \
 		src/utils/get_next_line.c \
 		src/utils/strcut.c			\
+		src/utils/command_type.c \
 		src/alias/alias.c						\
 		src/alias/alias_utils.c			\
 		src/env/env_utils.c			\
@@ -26,6 +27,7 @@ SRCS	=	src/main.c				\
 		src/execution/execute_ast.c		\
 		src/execution/child.c			\
 		src/execution/signal_handler.c \
+		src/execution/exec_functions.c \
 		src/parsing/parse_passes.c		\
 		src/parsing/state.c			\
 		src/parsing/ast.c			\

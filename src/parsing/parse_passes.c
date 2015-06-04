@@ -5,6 +5,9 @@
 #include "parsing/parse_utils.h"
 
 #include "utils/line_to_wordtab.h"
+#include "utils/command_type.h"
+
+#include "execution/exec_functions.h"
 
 #include "definitions.h"
 
@@ -191,6 +194,8 @@ int	reorganize_pipes(t_linked_list **nodes_list)
 	if (pipe(pipefd) == -1)
 		return FALSE;
 
+
+
 	return TRUE;
 }
 
@@ -206,6 +211,14 @@ int analyze_command_argv(t_linked_list	**nodes_list)
 		if ((*nodes_list)->type == ITEM_COMMAND)
 		{
 			command = (t_node_command	*)(*nodes_list)->item;
+
+			if (is_alias(command->executable))
+				command->execute = execute_alias;
+			else if (is_builtin(command->executable))
+				command->execute = get_builtin(command->executable);
+			else
+				command->execute = standard_execute;
+			
 			command->argv = line_to_wordtab(command->executable);
 		}
 
