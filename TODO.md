@@ -31,7 +31,7 @@ What we need to finish !
 	- [ ] Prompt
 	- [x] Get next line
 	- [ ] PATH
-	- [ ] Error management (segfault, child process crashes)
+	- [x] Error management (segfault, child process crashes)
 	- [ ] Return code (50% - untested)
 	- [ ] Background processes
 	- [ ] Job control
