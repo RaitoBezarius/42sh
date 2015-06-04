@@ -21,8 +21,8 @@ What we need to finish !
 	- [ ] Passes
 		- [x] Relocation of pre-fix / post-fix redirections.
 		- [x] Syntax checker
-		- [ ] Injection of redirections into command nodes.
-		- [ ] Pipes reorganization and opening.
+		- [x] Injection of redirections into command nodes.
+		- [x] Pipes reorganization and opening.
 		- [x] Argument injection.
 		- [ ] AST building.
 	- [ ] Inhibitors
