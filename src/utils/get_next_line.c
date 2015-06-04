@@ -44,7 +44,7 @@ static char	*my_realloc(char *str, const int size)
   char		*tmp;
   size_t	i;
 
-  if (!(tmp = malloc(size)))
+  if (!(tmp = calloc(size, sizeof(char))))
     {
       write(2, ERR_ALLOC, my_strclen(ERR_ALLOC, '\0'));
       if (str)
