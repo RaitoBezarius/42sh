@@ -19,6 +19,9 @@ t_linked_list	*form_initial_list(char	*line);
  *		- OR is the right part of a binary tree
  *		- Semicolon create a new AST
 **/
+t_redirection	*copy_redirection(t_redirection	*redir);
+t_node_command	*copy_node(t_node_command	*original);
+t_ast	*build_sub_tree(t_ast_list	*ast_list, int index, t_linked_list	**list);
 t_ast_list	*build_tree(t_linked_list	*nodes_list);
 
 void	skipPast(t_parse_state	*state, char character);

@@ -8,8 +8,11 @@
 #include "parsing/command_matcher.h"
 #include "parsing/parse_passes.h"
 
+#include "utils/line_to_wordtab.h"
+
 #include "definitions.h"
 
+#include <unistd.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -79,11 +82,106 @@ t_linked_list	*form_initial_list(char	*line)
 	return start;
 }
 
+
+t_node_command	*copy_node(t_node_command	*original)
+{
+	t_node_command	*cmd;
+	int len_exe;
+	
+	cmd = create_node();
+	len_exe = strlen(original->executable);
+	cmd->executable = malloc((len_exe + 1) * sizeof(char));
+	strcpy(cmd->executable, original->executable);
+	cmd->executable[len_exe] = '\0';
+	cmd->argv = line_to_wordtab(cmd->executable);
+	cmd->flag_background = original->flag_background;
+	cmd->execute = original->execute;
+	cmd->out = copy_redirection(original->out);
+	cmd->in = copy_redirection(original->in);
+
+	return cmd;
+}
+
+t_redirection	*copy_redirection(t_redirection	*original)
+{
+	t_redirection	*redir;
+	int len_file;
+	
+	if (!original)
+		return NULL;
+
+	redir = create_redirection();
+	redir->type = original->type;
+	redir->way = original->way;
+	
+	if (original->filename)
+	{
+		len_file = strlen(original->filename);
+		redir->filename = malloc(sizeof(char) * (len_file + 1));
+		strcpy(redir->filename, original->filename);
+		redir->filename[len_file] = '\0';
+	}
+	
+	if (original->fd != 0)
+		dup2(original->fd, redir->fd);
+
+	return redir;
+}
+
+t_ast	*build_sub_tree(t_ast_list	*ast_list, int index, t_linked_list	**list)
+{
+	t_ast	*ast;
+	t_node_command	*cmd;
+	int	tk_type;
+
+	if (!(*list))
+		return NULL;
+
+	ast = create_ast();
+	if (!ast)
+		return NULL;
+
+	while ((*list))
+	{
+		if ((*list)->type == ITEM_COMMAND)
+		{
+			cmd = copy_node((*list)->item);
+			ast->node = cmd;
+		}
+		else if ((*list)->type == ITEM_TOKEN)
+		{
+			tk_type = *((int*)(*list)->item);
+			if (tk_type == TK_AND)
+				ast->on_command_succeed = build_sub_tree(ast_list, index, &((*list)->next));
+			else if (tk_type == TK_OR)
+				ast->on_command_failed = build_sub_tree(ast_list, index, &((*list)->next));
+			else if (tk_type == TK_SMCLN)
+			{
+				index++;
+				ast_list->list = realloc(ast_list->list, sizeof(t_ast	*) * (index + 1));
+				ast_list->list[index] = build_sub_tree(ast_list, index, &((*list)->next));
+			}
+			else if (tk_type == TK_ESPERLUETTE)
+				ast->node->flag_background = TRUE;
+		}
+		
+		if ((*list))
+			(*list) = (*list)->next;
+	}
+
+	return ast;
+}
+
 t_ast_list	*build_tree(t_linked_list	*nodes_list)
 {
 	t_ast_list	*tree;
+	
+	tree = malloc(sizeof(t_ast_list));
+	tree->list = calloc(1, sizeof(t_ast	*));
+	tree->n_ast = 1;
+	tree->list[0] = build_sub_tree(tree, 0, &nodes_list);
 
-	return NULL;
+	return tree;
 }
 
 void	skipPast(t_parse_state	*state, char character)
