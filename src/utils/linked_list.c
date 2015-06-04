@@ -44,9 +44,10 @@ void	push_to_linked_list(t_linked_list	*current, void	*item, int	type, free_f_pt
 	current->next->prev = current;
 }
 
-void	remove_linked_item(t_linked_list	*item)
+void	remove_linked_item(t_linked_list	*item, int remove_item)
 {
-	free(item->item);
+	if (remove_item)
+		free(item->item);
 
 	if (item->next && item->prev)
 	{

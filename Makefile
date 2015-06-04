@@ -22,6 +22,8 @@ SRCS	=	src/main.c				\
 		src/utils/command_type.c \
 		src/alias/alias.c						\
 		src/alias/alias_utils.c			\
+		src/builtin/builtin.c				\
+		src/builtin/echo.c			\
 		src/env/env_utils.c			\
 		src/env/env.c				\
 		src/execution/execute_ast.c		\

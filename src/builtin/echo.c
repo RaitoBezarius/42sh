@@ -8,23 +8,30 @@
 ** Last update Wed Jun 03 21:58:44 2015 BEBE-BELL Hendy-Wilson
 */
 
-#include "string_utils.h"
+#include <unistd.h>
+#include <stdio.h>
+#include <string.h>
 
-int	echo(char **args)
+#include "builtin/echo.h"
+#include "utils/string_utils.h"
+
+int	echo(t_node_command	*node)
 {
+	char	**args;
   int	opt_n;
   int	i;
 
-  opt_n = STREQ(args[0], "-n") ? 1 : 0;
-  i = opt_n ? 1 : 0;
+	args = node->argv;
+  opt_n = STREQ(args[1], "-n") ? 1 : 0;
+  i = opt_n ? 2 : 1;
   while (args[i])
   {
     if (i > opt_n + 1)
-      my_putchar(FD_OUT, ' ');
-    my_putstr(FD_OUT, args[i]);
+			printf(" ");
+		printf(args[i]);
     ++i;
   }
   if (!opt_n)
-    my_putchar(FD_OUT, '\n');
+		printf("\n");
   return (0);
 }

@@ -11,14 +11,18 @@
 #ifndef BUILTINS_H_
 # define BUILTINS_H_
 
-typedef int	(*t_builtin_ptr)(char **args);
+#include "parsing/ast.h"
+
+typedef int	(*t_builtin_ptr)(t_node_command	*);
 
 typedef struct	s_builtin
 {
   char		*name;
-  t_builtin_ptr	*func;
+  t_builtin_ptr	func;
 }		t_builtin;
 
 extern t_builtin	g_builtins[];
+
+t_builtin_ptr	get_builtin(char	*name);
 
 #endif /* !BUILTINS_H_ */

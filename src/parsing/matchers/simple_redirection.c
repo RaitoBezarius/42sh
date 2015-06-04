@@ -38,6 +38,7 @@ void	dispatch_redirection_stdout(t_parse_state	*state, t_linked_list	**current)
 	skipToNext(state, ' ');
 	redirection = create_redirection();
 	redirection->type = REDIR_STDOUT;
+	redirection->way = OUTPUT;
 	redirection->filename = strcut(state->line, state->start_index, state->current_index - 1);
 	if (!open_fd(state, redirection, O_WRONLY | O_CREAT | O_TRUNC))
 		return;
@@ -61,6 +62,7 @@ void	dispatch_redirection_stdin(t_parse_state	*state, t_linked_list	**current)
 	}
 	redirection = create_redirection();
 	redirection->type = REDIR_STDIN;
+	redirection->way = INPUT;
 	redirection->filename = strcut(state->line, state->start_index, state->current_index - 1);
 	if (!open_fd(state, redirection, O_RDONLY))
 		return;

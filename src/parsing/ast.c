@@ -39,6 +39,7 @@ t_node_command	*create_node()
 	node->out = NULL;
 	node->in = NULL;
 	node->flag_background = FALSE;
+	node->execute = NULL;
 	if (!node)
 	{
 		fprintf(stderr, "Allocation failed!");

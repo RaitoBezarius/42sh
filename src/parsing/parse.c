@@ -8,6 +8,8 @@
 #include "parsing/command_matcher.h"
 #include "parsing/parse_passes.h"
 
+#include "definitions.h"
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -71,7 +73,7 @@ t_linked_list	*form_initial_list(char	*line)
 		skipPast(state, ' ');
 	}
 	if (!current->item || !current->type)
-		remove_linked_item(current);
+		remove_linked_item(current, TRUE);
 
 	free(state);
 	return start;

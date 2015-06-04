@@ -8,19 +8,27 @@
 ** Last update Wed Jun 03 13:32:41 2015 BEBE-BELL Hendy-Wilson
 */
 
+#include <stdlib.h>
+#include <string.h>
+
 #include "builtins.h"
+#include "builtin/echo.h"
 
-/* FIXME: REMOVE BUILTINS THAT ARE NOT IN THE PROGRAM ! */
-static t_builtin	g_builtins[] = {
-  {"cd", cd},
-  {"setenv", my_setenv},
-  {"unsetenv", my_unsetenv},
-  {"printenv", my_printenv},
-  {"alias", alias},
-  {"unalias", unalias},
-  {"history", history},
+t_builtin	g_builtins[] = {
   {"echo", echo},
-  {"exit", my_exit}
-}
+	{NULL, NULL}
+};
 
-int	(is)
+t_builtin_ptr	get_builtin(char	*name)
+{
+	int index;
+	
+	index = 0;
+	while (g_builtins[index].name != NULL)
+	{
+		if (strcmp(g_builtins[index].name, name) == 0)
+			return g_builtins[index].func;
+	}
+
+	return NULL;
+}

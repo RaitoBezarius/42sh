@@ -9,6 +9,8 @@
 
 #include "execution/exec_functions.h"
 
+#include "builtins.h"
+
 #include "definitions.h"
 
 #include <stdio.h>
@@ -18,7 +20,7 @@
 pass_function passes[] = {
 	relocate,
 	check_syntax,
-	/** TODO: It's quite tricky to make it work: inject_redirection_into_nodes, **/
+	inject_redirection_into_nodes,
 	reorganize_pipes,
 	analyze_command_argv
 };
@@ -160,6 +162,7 @@ int inject_redirection_into_nodes(t_linked_list **nodes_list)
 	t_node_command	*current_command;
 	t_redirection	*current_redirection;
 	t_linked_list	*start;
+	t_linked_list	*prev;
 	
 	current_redirection = NULL;
 	current_command = (t_node_command *)(*nodes_list)->item;
@@ -175,7 +178,9 @@ int inject_redirection_into_nodes(t_linked_list **nodes_list)
 					current_command->in = current_redirection;
 				else
 					current_command->out = current_redirection;
-				remove_linked_item((*nodes_list));
+				prev = (*nodes_list)->prev;
+				remove_linked_item((*nodes_list), FALSE);
+				(*nodes_list) = prev;
 				continue;
 			}
 		}

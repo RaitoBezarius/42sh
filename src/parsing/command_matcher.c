@@ -49,6 +49,11 @@ void	match_command(t_parse_state	*state, t_linked_list	**current)
 	skipPast(state, ' ');
 	state->current_index--;
 	exe_line = strcut(state->line, state->start_index, state->current_index);
+	if (!exe_line)
+	{
+		set_error(state, "Syntax error, expected a command.\n");
+		return;
+	}
 	command = create_node();
 	command->executable = exe_line;
 	push_to_linked_list((*current), command, ITEM_COMMAND, command_freer);

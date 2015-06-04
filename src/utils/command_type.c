@@ -1,6 +1,10 @@
 #include "utils/command_type.h"
+#include "alias.h"
+#include "builtins.h"
 
 #include "definitions.h"
+
+#include <string.h>
 
 int	is_alias(char	*executable)
 {
@@ -23,7 +27,7 @@ int is_builtin(char	*executable)
 	index = 0;
 	while (g_builtins[index].name != NULL)
 	{
-		if (g_builtins[index].name == executable)
+		if (strcmp(g_builtins[index].name, executable) == 0)
 			return TRUE;
 		index++;
 	}
