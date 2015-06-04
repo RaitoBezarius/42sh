@@ -3,6 +3,7 @@
 #include "parsing/redirection_matchers.h"
 #include "parsing/token_matchers.h"
 #include "parsing/parse_utils.h"
+#include "parsing/syntax_checker.h"
 
 #include "utils/line_to_wordtab.h"
 #include "utils/command_type.h"
@@ -74,89 +75,6 @@ int relocate(t_linked_list **nodes_list)
 	return TRUE;
 }
 
-/** TODO: Omg, this is too long. **/
-int check_syntax(t_linked_list	**nodes_list)
-{
-	t_linked_list	*start;
-	t_linked_list	*checkpoint;
-	t_redirection	*redirection;
-	int	token_type;
-
-	start = (*nodes_list);
-	while ((*nodes_list))
-	{
-		if (!expect(nodes_list, ITEM_COMMAND))
-		{
-			fprintf(stderr, "Syntax error, expected command.\n");
-			return FALSE;
-		}
-
-		if (!(*nodes_list))
-		{
-			(*nodes_list) = start;
-			return TRUE;
-		}
-		
-		checkpoint = (*nodes_list);
-		if (expect(nodes_list, ITEM_REDIRECTION))
-		{
-			redirection = (t_redirection	*)checkpoint->item;
-			if (redirection->type != REDIR_PIPE)
-			{
-				expect(nodes_list, ITEM_REDIRECTION);
-				if (!(*nodes_list))
-				{
-					(*nodes_list) = start;
-					return TRUE;
-				}
-
-				if (expect(nodes_list, ITEM_REDIRECTION))
-				{
-					fprintf(stderr, "Syntax error, expected token or command, got redirection. You cannot do more than 2 redirections in a block!\n");
-					return FALSE;
-				}
-				if (!expect(nodes_list, ITEM_TOKEN))
-				{
-					fprintf(stderr, "Syntax error, expected token or redirection, found command.\n");
-					return FALSE;
-				}
-			}
-		}
-		else if (expect(nodes_list, ITEM_TOKEN))
-		{
-			token_type = *((int *)checkpoint->item);
-			if (token_type != TK_ESPERLUETTE && !expect(nodes_list, ITEM_COMMAND))
-			{
-				fprintf(stderr, "Syntax error, expected a command after a token.\n");
-				return FALSE;
-			}
-			else
-			{
-				if ((*nodes_list))
-				{
-					if (!expect(nodes_list, ITEM_TOKEN))
-					{
-						fprintf(stderr, "Syntax error, expected a token after background specifier (&).\n");
-						return FALSE;
-					}
-					if (!(*nodes_list))
-					{
-						fprintf(stderr, "Syntax error, expected a command after a token.\n");
-						return FALSE;
-					}
-				}
-			}
-		}
-		else
-		{
-			fprintf(stderr, "Syntax error, expected token or redirection, found command.\n");
-			return FALSE;
-		}
-	}
-	(*nodes_list) = start;
-	return TRUE;
-}
-
 int inject_redirection_into_nodes(t_linked_list **nodes_list)
 {
 	t_node_command	*current_command;
@@ -199,7 +117,7 @@ int	reorganize_pipes(t_linked_list **nodes_list)
 	if (pipe(pipefd) == -1)
 		return FALSE;
 
-
+	(void)nodes_list;
 
 	return TRUE;
 }

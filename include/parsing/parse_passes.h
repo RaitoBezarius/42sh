@@ -9,9 +9,6 @@
 **/
 int relocate(t_linked_list	**nodes_list);
 
-/** Check pass **/
-int	check_syntax(t_linked_list	**nodes_list);
-
 /** This is the second pass, it injects basic redirection into command nodes. **/
 /** Pipes are ignored for now. **/
 int inject_redirection_into_nodes(t_linked_list	**nodes_list);

@@ -44,7 +44,8 @@ enum ListItem
 {
 	ITEM_COMMAND = 1,
 	ITEM_REDIRECTION = 2,
-	ITEM_TOKEN = 3
+	ITEM_TOKEN = 3,
+	ITEM_PIPE = 4 /** Special use for the syntax checker **/
 };
 
 #endif
