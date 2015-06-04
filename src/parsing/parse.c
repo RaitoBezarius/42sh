@@ -113,27 +113,39 @@ static char	*get_string_array(char	**argv)
 	str = calloc(32, sizeof(char));
 
 	str[0] = '[';
-	str[1] = ' ';
 
-	cur_pos += 2;
-	available_size -= 2;
+	cur_pos += 1;
+	available_size -= 1;
 
-	while (argv[index] != NULL)
+	if (argv != NULL)
 	{
-		arg_len = strlen(argv[index]);
-		if (available_size <= arg_len)
+		while (argv[index] != NULL)
 		{
-			total_size += (arg_len - available_size + 1);
-			str = realloc(str, total_size);
-			available_size += (arg_len + 1);
+			if (index == 0)
+			{
+				strcat(&str[cur_pos], " ");
+				available_size--;
+				cur_pos++;
+			}
+			else
+			{
+				strcat(&str[cur_pos], ", ");
+				available_size -= 2;
+				cur_pos += 2;
+			}
+
+			arg_len = strlen(argv[index]);
+			if (available_size <= arg_len)
+			{
+				total_size += (arg_len - available_size + 1);
+				str = realloc(str, total_size);
+				available_size += (arg_len + 1);
+			}
+			strcat(&str[cur_pos], argv[index]);
+			available_size -= arg_len;
+			cur_pos += arg_len;
+			index++;
 		}
-		strcat(&str[cur_pos], argv[index]);
-		available_size -= arg_len;
-		cur_pos += arg_len;
-		strcat(&str[cur_pos], " ");
-		available_size--;
-		cur_pos++;
-		index++;
 	}
 
 	if (available_size < 3)
