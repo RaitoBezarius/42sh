@@ -9,6 +9,9 @@
 **/
 int relocate(t_linked_list	**nodes_list);
 
+/** Check pass **/
+int	check_syntax(t_linked_list	**nodes_list);
+
 /** This is the second pass, it injects basic redirection into command nodes. **/
 /** Pipes are ignored for now. **/
 int inject_redirection_into_nodes(t_linked_list	**nodes_list);
@@ -21,6 +24,6 @@ int	reorganize_pipes(t_linked_list	**nodes_list);
 int	analyze_command_argv(t_linked_list	**nodes_list);
 
 typedef int (*pass_function)(t_linked_list	**);
-extern pass_function passes[3];
-#define N_PASSES 3
+extern pass_function passes[4];
+#define N_PASSES 4
 #endif

@@ -30,6 +30,7 @@ SRCS	=	src/main.c				\
 		src/parsing/state.c			\
 		src/parsing/ast.c			\
 		src/parsing/parse.c \
+		src/parsing/parse_utils.c \
 		src/parsing/error.c \
 		src/parsing/redirection_matchers.c \
 		src/parsing/matchers/pipe_redirection.c \
