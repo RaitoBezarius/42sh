@@ -39,7 +39,7 @@ void	dispatch_redirection_stdout(t_parse_state	*state, t_linked_list	**current)
 	redirection = create_redirection();
 	redirection->type = REDIR_STDOUT;
 	redirection->filename = strcut(state->line, state->start_index, state->current_index - 1);
-	if (!open_fd(state, redirection, O_WRONLY))
+	if (!open_fd(state, redirection, O_WRONLY | O_CREAT | O_TRUNC))
 		return;
 	push_to_linked_list((*current), redirection, ITEM_REDIRECTION, redirection_freer);
 	(*current) = (*current)->next;
@@ -71,7 +71,7 @@ void	dispatch_redirection_stdin(t_parse_state	*state, t_linked_list	**current)
 
 int	open_fd(t_parse_state	*state, t_redirection	*redirection, int flag)
 {
-	redirection->fd = open(redirection->filename, flag);
+	redirection->fd = open(redirection->filename, flag, S_IRUSR | S_IWUSR);
 	if (redirection->fd < 0)
 	{
 		set_error(state, "%s: %s\n", strerror(errno), redirection->filename);
