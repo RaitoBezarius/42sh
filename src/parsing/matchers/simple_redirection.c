@@ -8,6 +8,8 @@
 
 #include "definitions.h"
 
+#include <string.h>
+#include <errno.h>
 #include <sys/types.h>
 #include <sys/stat.h>
 #include <fcntl.h>
@@ -72,7 +74,7 @@ int	open_fd(t_parse_state	*state, t_redirection	*redirection, int flag)
 	redirection->fd = open(redirection->filename, flag);
 	if (redirection->fd < 0)
 	{
-		set_error(state, "No such file: %s\n", redirection->filename);
+		set_error(state, "%s: %s\n", strerror(errno), redirection->filename);
 		return FALSE;
 	}
 	return TRUE;
