@@ -28,12 +28,15 @@ int relocate(t_linked_list *nodes_list)
 				!(nodes_list->prev && nodes_list->prev->type == ITEM_COMMAND))
 		{
 			start = nodes_list;
-			while ((nodes_list = nodes_list->next) 
+			while (nodes_list 
 					&& (nodes_list->type != ITEM_COMMAND 
-						|| nodes_list->type != ITEM_TOKEN));
-			if (nodes_list->type != ITEM_COMMAND)
+						|| nodes_list->type != ITEM_TOKEN))
 			{
-				fprintf(stderr, "Syntax error, no command before / after redirection.");
+				nodes_list = nodes_list->next;
+			}
+			if (!nodes_list || nodes_list->type != ITEM_COMMAND)
+			{
+				fprintf(stderr, "Syntax error, no command before / after redirection.\n");
 				return FALSE;
 			}
 			else
