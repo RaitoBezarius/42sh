@@ -20,6 +20,7 @@ What we need to finish !
 		- [x] Esperluette
 	- [ ] Passes
 		- [x] Relocation of pre-fix / post-fix redirections.
+		- [x] Syntax checker
 		- [ ] Injection of redirections into command nodes.
 		- [ ] Pipes reorganization and opening.
 		- [x] Argument injection.
