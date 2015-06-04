@@ -21,31 +21,36 @@ int relocate(t_linked_list **nodes_list)
 {
 	t_linked_list *start;
 	t_linked_list	*future_next;
+	t_redirection	*redir;
 
 	start = (*nodes_list);
 	while ((*nodes_list))
 	{
-		if ((*nodes_list)->type == ITEM_REDIRECTION && 
-				!((*nodes_list)->prev && (*nodes_list)->prev->type == ITEM_COMMAND))
+		if ((*nodes_list)->type == ITEM_REDIRECTION
+				&& !((*nodes_list)->prev && (*nodes_list)->prev->type == ITEM_COMMAND))
 		{
-			start = (*nodes_list);
-			while ((*nodes_list) 
-					&& (*nodes_list)->type != ITEM_COMMAND 
-						&& (*nodes_list)->type != ITEM_TOKEN)
+			redir = (t_redirection	*)(*nodes_list)->item;
+			if (redir->type != REDIR_PIPE)
 			{
-				(*nodes_list) = (*nodes_list)->next;
-			}
-			if (!(*nodes_list) || (*nodes_list)->type != ITEM_COMMAND)
-			{
-				fprintf(stderr, "Syntax error, no command before / after redirection.\n");
-				return FALSE;
-			}
-			else
-			{
-				future_next = (*nodes_list)->prev;
-				move_item_before((*nodes_list), start); /** Move COMMAND before first REDIRECTION **/
 				start = (*nodes_list);
-				(*nodes_list) = future_next;
+				while ((*nodes_list) 
+						&& (*nodes_list)->type != ITEM_COMMAND 
+							&& (*nodes_list)->type != ITEM_TOKEN)
+				{
+					(*nodes_list) = (*nodes_list)->next;
+				}
+				if (!(*nodes_list) || (*nodes_list)->type != ITEM_COMMAND)
+				{
+					fprintf(stderr, "Syntax error, no command before / after redirection.\n");
+					return FALSE;
+				}
+				else
+				{
+					future_next = (*nodes_list)->prev;
+					move_item_before((*nodes_list), start); /** Move COMMAND before first REDIRECTION **/
+					start = (*nodes_list);
+					(*nodes_list) = future_next;
+				}
 			}
 		}
 
