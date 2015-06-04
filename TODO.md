@@ -29,8 +29,11 @@ What we need to finish !
 	- [ ] Magic quotes
 	- [ ] Priority by parenthesis ()
 - [ ] Execution
+	- [ ] Is It A {Alias, Builtin}
+	- [ ] Environnement
 	- [ ] Prompt
 	- [x] Get next line
+	- [x] Alias/builtin/standard priority.
 	- [ ] PATH
 	- [x] Error management (segfault, child process crashes)
 	- [ ] Return code (50% - untested)
@@ -42,7 +45,6 @@ What we need to finish !
 		- [ ] cd -
 	- [ ] echo
 	- [ ] exit
-- [ ] Default environnement
 - [ ] Globbing
 - [ ] Variables
 	- [ ] Local
