@@ -115,7 +115,6 @@ int analyze_command_argv(t_linked_list	**nodes_list)
 		{
 			command = (t_node_command	*)(*nodes_list)->item;
 			command->argv = line_to_wordtab(command->executable);
-			/** TODO: Is there a memory leak somewhere that I can't see ? **/
 		}
 
 		(*nodes_list) = (*nodes_list)->next;
