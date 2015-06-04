@@ -15,13 +15,17 @@ int main(int argc, char	**argv)
 		printf("> ");
 		fflush(stdout);
 		line = get_next_line(0);
-		if (strcmp(line, "") == 0)
-			continue;
 
-		if (strcmp(line, "exit") == 0)
+		if (strcmp(line, "exit") == 0 || !line)
 		{
 			free(line);
 			return 0;
+		}
+
+		if (strcmp(line, "") == 0)
+		{
+			free(line);
+			continue;
 		}
 		
 		status_code = execute_line(line);
