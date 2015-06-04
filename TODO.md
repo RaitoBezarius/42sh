@@ -3,14 +3,63 @@ What we need to finish !
 
 ## Mandatory
 - [ ] Parsing
-- [x] Execution
-- [ ] Signal handler (error management of child process)
-- [x] Return code
-- [ ] Echo built-in
-- [ ] Exit built-in
+	- [x] Command matching
+		- [x] Parameters
+	- [x] Spaces stripping
+	- [ ] Tabs stripping
+	- [ ] Redirections
+		- [x] Stdin simple
+		- [ ] Stdin complex
+		- [x] Stdout simple
+		- [ ] Stdout complex
+		- [x] Pipes
+	- [x] Seperators
+		- [x] And
+		- [x] Or
+		- [x] Semicolon
+		- [x] Esperluette
+	- [ ] Passes
+		- [x] Relocation of pre-fix / post-fix redirections.
+		- [ ] Injection of redirections into command nodes.
+		- [ ] Pipes reorganization and opening.
+		- [x] Argument injection.
+		- [ ] AST building.
+	- [ ] Inhibitors
+	- [ ] Magic quotes
+	- [ ] Priority by parenthesis ()
+- [ ] Execution
+	- [ ] Prompt
+	- [x] Get next line
+	- [ ] PATH
+	- [ ] Error management (segfault, child process crashes)
+	- [ ] Return code (50% - untested)
+	- [ ] Background processes
+	- [ ] Job control
+- [ ] Builtins
+	- [ ] cd
+		- [ ] cd alone
+		- [ ] cd -
+	- [ ] echo
+	- [ ] exit
 - [ ] Default environnement
-
-## Options
+- [ ] Globbing
+- [ ] Variables
+	- [ ] Local
+	- [ ] Env
+- [ ] Special variables
+	- [ ] TERM
+	- [ ] precmd
+	- [ ] cwdcmd
+	- [ ] cwd
+	- [ ] ignoreof
 - [ ] History
-- [ ] Job control
-- [ ] Background
+	- [ ] Simple
+	- [ ] with !
+	- [ ] ! + modifier
+	- [ ] line editer? (readline?)
+- [ ] Aliases
+- [ ] Readline
+	- [ ] Multi-lines
+	- [ ] Dynamic rebinding
+	- [ ] Dynamic completion
+- [ ] Scripting
