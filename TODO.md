@@ -6,7 +6,7 @@ What we need to finish !
 	- [x] Command matching
 		- [x] Parameters
 	- [x] Spaces stripping
-	- [ ] Tabs stripping
+	- [x] Tabs stripping
 	- [ ] Redirections
 		- [x] Stdin simple
 		- [ ] Stdin complex
