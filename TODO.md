@@ -18,13 +18,13 @@ What we need to finish !
 		- [x] Or
 		- [x] Semicolon
 		- [x] Esperluette
-	- [ ] Passes
+	- [x] Passes
 		- [x] Relocation of pre-fix / post-fix redirections.
 		- [x] Syntax checker
 		- [x] Injection of redirections into command nodes.
 		- [x] Pipes reorganization and opening.
 		- [x] Argument injection.
-		- [ ] AST building.
+		- [x] AST building.
 	- [ ] Inhibitors
 	- [ ] Magic quotes
 	- [ ] Priority by parenthesis ()

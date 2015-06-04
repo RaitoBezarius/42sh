@@ -16,6 +16,7 @@
 
 #include "env.h"
 #include "env_utils.h"
+#include "utils.h"
 
 /*
 ** Retrieve the environment variable which name is $name
