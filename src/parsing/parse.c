@@ -96,6 +96,58 @@ void skipToNext(t_parse_state	*state, char character)
 		state->current_index++;
 }
 
+static char	*get_string_array(char	**argv)
+{
+	char	*str;
+	int arg_len;
+	int available_size;
+	int total_size;
+	int cur_pos;
+	int index;
+
+	total_size = 32;
+	available_size = 32;
+	cur_pos = 0;
+	index = 0;
+
+	str = calloc(32, sizeof(char));
+
+	str[0] = '[';
+	str[1] = ' ';
+
+	cur_pos += 2;
+	available_size -= 2;
+
+	while (argv[index] != NULL)
+	{
+		arg_len = strlen(argv[index]);
+		if (available_size <= arg_len)
+		{
+			total_size += (arg_len - available_size + 1);
+			str = realloc(str, total_size);
+			available_size += (arg_len + 1);
+		}
+		strcat(&str[cur_pos], argv[index]);
+		available_size -= arg_len;
+		cur_pos += arg_len;
+		strcat(&str[cur_pos], " ");
+		available_size--;
+		cur_pos++;
+		index++;
+	}
+
+	if (available_size < 3)
+	{
+		total_size += (3 - available_size);
+		str = realloc(str, total_size);
+	}
+	
+	str[cur_pos] = ' ';
+	str[cur_pos + 1] = ']';
+	str[cur_pos + 2] = '\0';
+
+	return str;
+}
 void	print_debug_list(t_linked_list	*nodes_list)
 {
 	while (nodes_list)
@@ -111,12 +163,15 @@ void	print_debug_node(t_linked_list	*node)
 {
 	t_redirection	*tnode;
 	t_node_command	*cnode;
+	char	*str_argv;
 	int index;
 
 	if (node->type == ITEM_COMMAND)
 	{
 		cnode = (t_node_command	*)node->item;
-		printf("Command, exe: %s, argv: %p, in: %p, out: %p", cnode->executable, (int*)cnode->argv, (int*)cnode->in, (int*)cnode->out);
+		str_argv = get_string_array(cnode->argv);
+		printf("Command, exe: %s, argv: %s, in: %p, out: %p", cnode->executable, str_argv, (int*)cnode->in, (int*)cnode->out);
+		free(str_argv);
 	}
 	else if (node->type == ITEM_REDIRECTION)
 	{
@@ -135,3 +190,4 @@ void	print_debug_node(t_linked_list	*node)
 		printf("Token: %s", token_defs[index].name);
 	}
 }
+
