@@ -14,7 +14,7 @@ void	child_execute(t_node_command	*cmd)
 		return ;
 	if (!install_redirection(cmd))
 		return ;
-	error = execve(cmd->executable, cmd->argv, 0);
+	error = cmd->execute(cmd);
 	if (error == -1)
 		fprintf(stderr, "Execve failed. Aborting execution.");
 }

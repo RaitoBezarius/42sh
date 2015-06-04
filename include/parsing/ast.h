@@ -16,6 +16,7 @@ typedef struct s_node_command
 	t_redirection	*out;
 	t_redirection	*in;
 	int flag_background;
+	int (*execute)(struct s_node_command	*);
 } t_node_command;
 
 typedef struct s_ast
