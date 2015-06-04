@@ -16,6 +16,7 @@
 
 #include <stdio.h>
 #include <unistd.h>
+#include <errno.h>
 #include <string.h>
 
 pass_function passes[] = {
@@ -112,13 +113,43 @@ int inject_redirection_into_nodes(t_linked_list **nodes_list)
 
 int	reorganize_pipes(t_linked_list **nodes_list)
 {
-	int	pipefd[2];
+	t_linked_list	*start;
+	t_node_command	*left;
+	t_node_command	*right;
+	t_redirection	*r_pipe;
 	
-	if (pipe(pipefd) == -1)
-		return FALSE;
+	start = (*nodes_list);
+	while ((*nodes_list))
+	{
+		if ((*nodes_list)->type == ITEM_REDIRECTION)
+		{
+			r_pipe = (t_redirection	*)(*nodes_list)->item;
+			if (r_pipe->type == REDIR_PIPE)
+			{
+				int pipefd[2];
 
-	(void)nodes_list;
+				if (pipe(pipefd) == -1)
+				{
+					fprintf(stderr, "Failed to create a pipe: %s", strerror(errno));
+					return FALSE;
+				}
 
+				left = (t_node_command	*)((*nodes_list)->prev->item);
+				left->out = create_redirection();
+				left->out->fd = pipefd[0];
+
+				right = (t_node_command	*)((*nodes_list)->next->item);
+				right->in = create_redirection();
+				right->in->fd = pipefd[1];
+
+				remove_linked_item((*nodes_list), TRUE);
+				(*nodes_list) = start;
+			}
+		}
+		(*nodes_list) = (*nodes_list)->next;
+	}
+	
+	(*nodes_list) = start;
 	return TRUE;
 }
 
