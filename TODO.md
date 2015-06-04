@@ -36,7 +36,7 @@ What we need to finish !
 	- [x] Alias/builtin/standard priority.
 	- [ ] PATH
 	- [x] Error management (segfault, child process crashes)
-	- [ ] Return code (50% - untested)
+	- [x] Return code
 	- [ ] Background processes
 	- [ ] Job control
 - [ ] Builtins

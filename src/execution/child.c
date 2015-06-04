@@ -21,7 +21,7 @@ void	child_execute(t_node_command	*cmd)
 		return ;
 	error = cmd->execute(cmd);
 	if (error == -1)
-		fprintf(stderr, "Execve failed. Aborting execution.\n");
+		fprintf(stderr, "Execve failed. Aborting execution: %s.\n", strerror(errno));
 }
 
 int	install_signals_handlers()
