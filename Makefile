@@ -25,6 +25,7 @@ SRCS	=	src/main.c				\
 		src/env/env.c				\
 		src/execution/execute_ast.c		\
 		src/execution/child.c			\
+		src/execution/signal_handler.c \
 		src/parsing/parse_passes.c		\
 		src/parsing/state.c			\
 		src/parsing/ast.c			\

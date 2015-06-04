@@ -6,6 +6,7 @@
 #define SUCCESS 0
 #define PARSING_ERROR 255
 #define FORK_FAIL 254
+#define SIGNAL_FAIL 253
 
 int	execute_line(char	*line);
 int execute_list_ast(t_ast_list	*list_ast);

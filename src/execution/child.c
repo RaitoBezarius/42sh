@@ -1,8 +1,13 @@
 #include "execution/child.h"
+#include "execution/execute_ast.h"
+#include "execution/signal_handler.h"
 
 #include "definitions.h"
 
 #include <unistd.h>
+#include <errno.h>
+#include <string.h>
+#include <signal.h>
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -16,25 +21,44 @@ void	child_execute(t_node_command	*cmd)
 		return ;
 	error = cmd->execute(cmd);
 	if (error == -1)
-		fprintf(stderr, "Execve failed. Aborting execution.");
+		fprintf(stderr, "Execve failed. Aborting execution.\n");
 }
 
 int	install_signals_handlers()
 {
-	/** TODO: Code it **/
-	return 0;
+	if (signal(SIGSEGV, onSegmentationFault) == SIG_ERR)
+	{
+		fprintf(stderr, "Failed to install signal handler (SIGSEGV): %s\n", strerror(errno));
+		return SIGNAL_FAIL;
+	}
+	if (signal(SIGILL, onIllegalInstruction) == SIG_ERR)
+	{
+		fprintf(stderr, "Failed to install signal handler (SIGILL): %s\n", strerror(errno));
+		return SIGNAL_FAIL;
+	}
+	if (signal(SIGABRT, onAbnormalAbortion) == SIG_ERR)
+	{
+		fprintf(stderr, "Failed to install signal handler (SIGABRT): %s\n", strerror(errno));
+		return SIGNAL_FAIL;
+	}
+	if (signal(SIGTERM, onTerminated) == SIG_ERR)
+	{
+		fprintf(stderr, "Failed to install signal handler (SIGTERM): %s\n", strerror(errno));
+		return SIGNAL_FAIL;
+	}
+	return TRUE;
 }
 
 int	install_redirection(t_node_command	*cmd)
 {
 	if (cmd->in && !redirect(cmd->in->fd, STDIN_FILENO))
 	{
-		fprintf(stderr, "Failed to redirect stdin.");
+		fprintf(stderr, "Failed to redirect stdin: %s\n", strerror(errno));
 		return FALSE;
 	}
 	if (cmd->out && !redirect(cmd->out->fd, STDOUT_FILENO))
 	{
-		fprintf(stderr, "Failed to redirect stdout.");
+		fprintf(stderr, "Failed to redirect stdout: %s\n", strerror(errno));
 		return FALSE;
 	}
 	return TRUE;
