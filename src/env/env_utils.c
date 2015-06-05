@@ -5,7 +5,7 @@
 ** Login   <bebe-b_h@epitech.eu>
 **
 ** Started on  Sun May 24 05:36:19 2015 BEBE-BELL Hendy-Wilson
-** Last update Thu Jun 04 23:39:12 2015 BEBE-BELL Hendy-Wilson
+** Last update Fri Jun 05 09:00:19 2015 BEBE-BELL Hendy-Wilson
 */
 
 #include <stdlib.h>
@@ -17,6 +17,23 @@
 #include "env.h"
 #include "env_utils.h"
 #include "utils.h"
+
+void	init_envvars(char **envp)
+{
+  char	**wordtab;
+  int	i;
+
+  i = 0;
+  while (envp[i])
+  {
+    wordtab = str_to_wordtab(envp[i], '=');
+    if (!wordtab)
+      return ;
+    my_setenv(wordtab[0], wordtab[1]);
+    free_wordtab(wordtab);
+    ++i;
+  }
+}
 
 /*
 ** Retrieve the environment variable which name is $name

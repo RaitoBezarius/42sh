@@ -5,7 +5,7 @@
 ** Login   <bebe-b_h@epitech.eu>
 **
 ** Started on  Sun May 24 04:56:04 2015 BEBE-BELL Hendy-Wilson
-** Last update Sun May 24 16:23:04 2015 BEBE-BELL Hendy-Wilson
+** Last update Fri Jun 05 08:59:56 2015 BEBE-BELL Hendy-Wilson
 */
 
 #include <stdlib.h>
@@ -20,17 +20,34 @@
 
 t_env	*g_env_list = NULL;
 
+int	is_alnum(const char *str)
+{
+  int	i;
+
+  i = 0;
+  while (str[i])
+  {
+    if (!IS_ALPHA(str[i])
+	&& !(str[i] >= 'a' && str[i] <= 'z')
+	&& !(str[i] >= 'A' && str[i] <= 'Z')
+	&& str[i] != '_')
+      return (0);
+    ++i;
+  }
+  return (1);
+}
+
 /*
 ** Check if $name content is a valid envrionment variable name
 */
 static int	check_name(const char *name)
 {
- if (!IS_ALPHA(name[0]))
+ if (IS_ALPHA(name[0]))
   {
     fprintf(stderr, "setenv: Variable name must begin with a letter.\n");
     return (-1);
   }
-  if (!isalnum(name))
+  if (is_alnum(name) == 0)
   {
     fprintf(stderr, "setenv: Variable name must be only alphanumeric.\n");
     return (-1);

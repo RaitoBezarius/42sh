@@ -5,7 +5,7 @@
 ** Login   <bebe-b_h@epitech.eu>
 **
 ** Started on  Fri Jun 05 07:40:53 2015 BEBE-BELL Hendy-Wilson
-** Last update Fri Jun 05 07:53:22 2015 BEBE-BELL Hendy-Wilson
+** Last update Fri Jun 05 08:49:41 2015 BEBE-BELL Hendy-Wilson
 */
 
 #include <stdio.h>
@@ -15,11 +15,22 @@
 #include "utils/get_next_line.h"
 #include "execution/execute_ast.h"
 
-int	main(void)
+#include "env.h"
+#include "env_utils.h"
+
+static void	init_shell(char **envp)
+{
+  init_envvars(envp);  
+}
+
+int	main(int argc, char **argv, char **envp)
 {
   char	*line;
   int	status_code;
 
+  (void) argc;
+  (void) argv;
+  init_shell(envp);
   while (1)
   {
     printf("> ");

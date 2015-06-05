@@ -5,10 +5,11 @@
 ** Login   <bebe-b_h@epitech.eu>
 **
 ** Started on  Fri Jun 05 07:58:00 2015 BEBE-BELL Hendy-Wilson
-** Last update Fri Jun 05 08:02:55 2015 BEBE-BELL Hendy-Wilson
+** Last update Fri Jun 05 08:42:06 2015 BEBE-BELL Hendy-Wilson
 */
 
 #include "execution/exec_functions.h"
+#include "path.h"
 
 #include <unistd.h>
 
@@ -18,7 +19,12 @@
 */
 int	standard_execute(t_node_command *node)
 {
-  return (execve(node->argv[0], node->argv, NULL));
+  char	*file_path;
+
+  file_path = find_exec(node->argv[0]);
+  if (!file_path)
+    return (0);
+  return (execve(file_path, node->argv, NULL));
 }
 
 /*
@@ -28,5 +34,6 @@ int	standard_execute(t_node_command *node)
 */
 int	execute_alias(t_node_command *node)
 {
+  (void) node;
   return (0);
 }

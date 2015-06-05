@@ -5,7 +5,7 @@
 ** Login   <bebe-b_h@epitech.eu>
 **
 ** Started on  Fri Jun 05 08:07:39 2015 BEBE-BELL Hendy-Wilson
-** Last update Fri Jun 05 08:08:36 2015 BEBE-BELL Hendy-Wilson
+** Last update Fri Jun 05 08:27:55 2015 BEBE-BELL Hendy-Wilson
 */
 
 #ifndef AST_H_
@@ -31,7 +31,7 @@ typedef struct	s_node_command
 
 typedef struct		s_ast
 {
-  struct s_asti		*on_command_succeed;
+  struct s_ast		*on_command_succeed;
   struct s_ast		*on_command_failed;
   t_node_command	*node;
 }			t_ast;
