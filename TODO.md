@@ -34,7 +34,7 @@ What we need to finish !
 	- [ ] Prompt
 	- [x] Get next line
 	- [x] Alias/builtin/standard priority.
-	- [ ] PATH
+	- [x] PATH
 	- [x] Error management (segfault, child process crashes)
 	- [x] Return code
 	- [ ] Background processes
