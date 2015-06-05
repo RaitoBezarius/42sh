@@ -86,6 +86,7 @@ int	execute_command(t_node_command *cmd)
 
   if (childpid != 0)
   {
+		/** TODO: Install SIGINT handler **/
     waitpid(childpid, &status, 0);
     return (status);
   }

@@ -92,4 +92,4 @@ int	redirect(int from_fd, int to_fd)
     return (FALSE);
   }
   return (TRUE);
-}
+

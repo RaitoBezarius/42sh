@@ -36,7 +36,7 @@ int	main(int argc, char **argv, char **envp)
     printf("> ");
     fflush(stdout);
     line = get_next_line(0);
-    if (strcmp(line, "exit") == 0 || !line)
+    if (!line || strcmp(line, "exit") == 0)
     {
       free(line);
       return (0);
